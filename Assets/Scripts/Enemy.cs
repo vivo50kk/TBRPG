@@ -11,6 +11,7 @@ public class Enemy : MonoBehaviour
     public int AttackValue;
     public int DefenseValue;
     public int BaseMemoryValue;
+    //test
     // Start is called before the first frame update
     void Start()
     {
