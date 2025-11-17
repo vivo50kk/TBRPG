@@ -375,6 +375,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 363335015}
+  - component: {fileID: 363335016}
   m_Layer: 5
   m_Name: BattleHubUI
   m_TagString: Untagged
@@ -412,6 +413,20 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 2.8554993}
   m_SizeDelta: {x: 566.4442, y: 161.8515}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &363335016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 363335014}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 149c949e9edc20a41a9dcbc9b2ba0216, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerNameText: {fileID: 923777356}
+  enemyMessage: {fileID: 2116382481}
 --- !u!1 &386575650
 GameObject:
   m_ObjectHideFlags: 0
@@ -453,6 +468,7 @@ GameObject:
   m_Component:
   - component: {fileID: 410540031}
   - component: {fileID: 410540032}
+  - component: {fileID: 410540033}
   m_Layer: 5
   m_Name: PlayerHealthBar
   m_TagString: Untagged
@@ -533,6 +549,19 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &410540033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 410540030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f1004753d134e74fa1a5b0d7ccb36f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bloodBarSlider: {fileID: 410540032}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1005,6 +1034,58 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 626741536}
   m_CullTransparentMesh: 1
+--- !u!1 &728535411
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 728535413}
+  - component: {fileID: 728535412}
+  m_Layer: 0
+  m_Name: BattleSystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &728535412
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 728535411}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e765d03968934ea40955570e501d4d76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  state: 0
+  playerPrefab: {fileID: 7980023938918435223, guid: 521952c99d8f174458d3bf9435f044b3, type: 3}
+  enemyPrefab: {fileID: 1989858966659044010, guid: 965601f08a2be034ba5abd48b0a8bdc1, type: 3}
+  playerBattleStation: {fileID: 1414000377}
+  enemyBattleStation: {fileID: 386575651}
+  battleHubUI: {fileID: 363335016}
+  playerBloodBarUI: {fileID: 410540033}
+  enemyBloodBarUI: {fileID: 1357579683}
+--- !u!4 &728535413
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 728535411}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1002.2242, y: 363.65408, z: 4.798994}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &733066044
 GameObject:
   m_ObjectHideFlags: 0
@@ -1273,7 +1354,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Female
+  m_text: Name
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1997,6 +2078,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1357579681}
   - component: {fileID: 1357579682}
+  - component: {fileID: 1357579683}
   m_Layer: 5
   m_Name: EnemyHealthBar
   m_TagString: Untagged
@@ -2077,6 +2159,19 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1357579683
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1357579680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f1004753d134e74fa1a5b0d7ccb36f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bloodBarSlider: {fileID: 1357579682}
 --- !u!1 &1414000376
 GameObject:
   m_ObjectHideFlags: 0
@@ -3390,6 +3485,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 7980023938918435223, guid: 521952c99d8f174458d3bf9435f044b3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3406,6 +3505,10 @@ PrefabInstance:
     - target: {fileID: 1989858966659044010, guid: 965601f08a2be034ba5abd48b0a8bdc1, type: 3}
       propertyPath: m_Name
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 1989858966659044010, guid: 965601f08a2be034ba5abd48b0a8bdc1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7669737981381749501, guid: 965601f08a2be034ba5abd48b0a8bdc1, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3465,3 +3568,4 @@ SceneRoots:
   - {fileID: 602567315}
   - {fileID: 7534478066881120042}
   - {fileID: 4421792896981999747}
+  - {fileID: 728535413}
