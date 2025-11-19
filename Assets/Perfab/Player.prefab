@@ -102,6 +102,8 @@ MonoBehaviour:
   MaxHealthValue: 60
   CurrentHealthValue: 50
   BaseMemoryValue: 70
+  Hunger: 0
+  MagicPowerValue: 0
   AttackValue: 5
   DefenseValue: 5
 --- !u!1 &7980023938918435223
@@ -154,5 +156,7 @@ MonoBehaviour:
   MaxHealthValue: 70
   CurrentHealthValue: 70
   BaseMemoryValue: 70
+  Hunger: 10
+  MagicPowerValue: 10
   AttackValue: 5
   DefenseValue: 5

@@ -6,11 +6,17 @@ public class Player : MonoBehaviour
 {
     public int PlayerID;
     public string PlayerName;
+
     public int MaxHealthValue;
     public int CurrentHealthValue;
     public int BaseMemoryValue;
+    public int MaxHunger;
+    public int CurrentHunger;
+    public int MaxMagicValue;
+    public int CurrentMagicValue;
     public int AttackValue;
     public int DefenseValue;
+    
 
 
     // Start is called before the first frame update

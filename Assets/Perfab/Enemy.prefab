@@ -51,7 +51,7 @@ MonoBehaviour:
   CurrentHealthValue: 5
   AttackValue: 5
   DefenseValue: 5
-  BaseMemoryValue: -50
+  BaseMemoryValue: 100
 --- !u!1 &3190804042083440575
 GameObject:
   m_ObjectHideFlags: 0

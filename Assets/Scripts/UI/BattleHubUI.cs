@@ -7,7 +7,7 @@ public class BattleHubUI : MonoBehaviour
 {
 
     public TextMeshProUGUI playerNameText;
-    public TextMeshProUGUI enemyMessage;
+    //public TextMeshProUGUI enemyMessage;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,7 +23,7 @@ public class BattleHubUI : MonoBehaviour
     public void SetHub(Player player,Enemy enemy)
     {
         
-        playerNameText.text = player.PlayerName;
-        enemyMessage.text = enemy.EnemyName + " appeared!";
+        playerNameText.text = player.PlayerName + "Magic:" + player.CurrentMagicValue + "Hunger:" + player.CurrentHunger;
+        //enemyMessage.text = enemy.EnemyName + " appeared!";
     }
 }

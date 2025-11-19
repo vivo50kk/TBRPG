@@ -29,14 +29,16 @@ public class BattleSystem : MonoBehaviour
 
     public BloodBarUI playerBloodBarUI;
     public BloodBarUI enemyBloodBarUI;
+    public AntiMemoryUI antiMemoryUI;
+    public SkillSystemUI skillSystemUI;
 
-
+    private float antiMemoryValue;
     // Start is called before the first frame update
 
     void Start()
     {
         state = BattleState.START;
-        SetUpBattle();
+        StartCoroutine(SetUpBattle());
     }
 
     // Update is called once per frame
@@ -45,7 +47,7 @@ public class BattleSystem : MonoBehaviour
         
     }
 
-    private void SetUpBattle()
+    private IEnumerator SetUpBattle()
     {
 
         GameObject playerGO = Instantiate(playerPrefab, playerBattleStation);
@@ -54,9 +56,51 @@ public class BattleSystem : MonoBehaviour
         enemy = enemyGO.GetComponent<Enemy>();
 
         battleHubUI.SetHub(player, enemy);
-
         playerBloodBarUI.SetHP(player.MaxHealthValue, player.CurrentHealthValue);
         enemyBloodBarUI.SetHP(enemy.MaxHealthValue, enemy.CurrentHealthValue);
+
+        antiMemoryValue = antiMemoryUI.FirstSetAntiMemoryBar(player, enemy);
+
+        yield return new WaitForSeconds(3f);
+
+        if (CalculateTurnOrder(antiMemoryValue))
+        {
+            state = BattleState.PLAYERTURN;
+            PlayerTurn();
+        }
+        else
+        {
+            state= BattleState.ENEMYTURN;
+            Debug.Log("EnemyTurn");
+
+        }
     }
 
+
+    private bool CalculateTurnOrder(float AntiMemoryValue)
+    {
+        
+        if (AntiMemoryValue >= 50)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    private void PlayerTurn()
+    {
+        Debug.Log("playerTrun");
+    }
+
+    public void OnSkillButton()
+    {
+        if (state != BattleState.PLAYERTURN)
+        {
+            return;
+        }
+        skillSystemUI.Show();
+    }
 }
