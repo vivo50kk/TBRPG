@@ -42,15 +42,16 @@ public class SkillSO : ScriptableObject
         return true;
     }
 
-    public virtual IEnumerator Execute(Player player, Enemy enemy, BattleSystem battleSystem)
+    public virtual IEnumerator Execute(Player player, Enemy enemy, BattleSystem battleSystem,AntiMemorySystem antiMemorySystem)
     {
         Debug.Log($"{player.PlayerName} 使用了 {skillName}");
 
         // 消耗资源
         player.CurrentMagicValue -= MagicCost;
-        player.CurrentHealthValue = healthCost;
+        player.CurrentHealthValue -= healthCost;
         // 播放动画和音效
         yield return new WaitForSeconds(1f);
+        Debug.Log("技能动画放映");
 
         // 显示技能名称
         
@@ -58,10 +59,11 @@ public class SkillSO : ScriptableObject
         switch (skillType)
         {
             case SkillType.Physics:
-                
+                enemy.TakeDamage(CalculatePhysicDamage(player.AttackValue, enemy.DefenseValue));
                 break;
             case SkillType.Memory:
-                
+                antiMemorySystem.SetAntiMemory(AntiMemoryEffect);
+                break;
             case SkillType.Item:
                 break;
         }
@@ -70,9 +72,9 @@ public class SkillSO : ScriptableObject
         
     }
 
-    public float CalculatePhysicDamage(int atk,int def)
+    public int CalculatePhysicDamage(int atk,int def)
     {
-        float PhysicDamage = atk - def;
+        int PhysicDamage = atk - def;
         return PhysicDamage;
     }
 

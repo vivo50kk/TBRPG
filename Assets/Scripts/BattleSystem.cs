@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 
 
@@ -29,14 +30,25 @@ public class BattleSystem : MonoBehaviour
 
     public BloodBarUI playerBloodBarUI;
     public BloodBarUI enemyBloodBarUI;
-    public AntiMemoryUI antiMemoryUI;
+    //public AntiMemoryUI antiMemoryUI;
     public SkillSystemUI skillSystemUI;
 
-    private float antiMemoryValue;
+    private int antiMemoryValue;
+    private AntiMemorySystem antiMemorySystem;
     // Start is called before the first frame update
+    public static BattleSystem Instance { get; private set; }
 
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject); return;
+        }
+        Instance = this;
+    }
     void Start()
     {
+        antiMemorySystem = GetComponent<AntiMemorySystem>();
         state = BattleState.START;
         StartCoroutine(SetUpBattle());
     }
@@ -59,7 +71,10 @@ public class BattleSystem : MonoBehaviour
         playerBloodBarUI.SetHP(player.MaxHealthValue, player.CurrentHealthValue);
         enemyBloodBarUI.SetHP(enemy.MaxHealthValue, enemy.CurrentHealthValue);
 
-        antiMemoryValue = antiMemoryUI.FirstSetAntiMemoryBar(player, enemy);
+        antiMemoryValue = antiMemorySystem.FirstSetAntiMemory(player, enemy);
+        //antiMemoryUI.SetAntiMemoryBar(antiMemoryValue);
+        Debug.Log("AntiMemoryValue:" + antiMemoryValue);
+        //set
 
         yield return new WaitForSeconds(3f);
 
@@ -76,6 +91,11 @@ public class BattleSystem : MonoBehaviour
         }
     }
 
+    private void PlayerTurn()
+    {
+        Debug.Log("playerTrun");
+        
+    }
 
     private bool CalculateTurnOrder(float AntiMemoryValue)
     {
@@ -90,10 +110,9 @@ public class BattleSystem : MonoBehaviour
         }
     }
 
-    private void PlayerTurn()
-    {
-        Debug.Log("playerTrun");
-    }
+    
+
+
 
     public void OnSkillButton()
     {
@@ -102,5 +121,24 @@ public class BattleSystem : MonoBehaviour
             return;
         }
         skillSystemUI.Show();
+    }
+
+    public void SkillExecute(SkillSO skill)
+    {
+        Debug.Log("Find Skill:" + skill.skillName);
+        if (skill.IsUsable(player))
+        {
+            Debug.Log("Execute Skill:" + skill.skillName);
+            StartCoroutine(skill.Execute(player, enemy, this, antiMemorySystem));
+        }
+        enemyBloodBarUI.SetHP(enemy.MaxHealthValue, enemy.CurrentHealthValue);
+        playerBloodBarUI.SetHP(player.MaxHealthValue, player.CurrentHealthValue);
+        
+        //判断血量胜负，更新UI，切换回合状态
+        //记忆胜利判断没做
+        if (enemy.IsHealthDefeated())
+        {
+            state = BattleState.WON;
+        }
     }
 }

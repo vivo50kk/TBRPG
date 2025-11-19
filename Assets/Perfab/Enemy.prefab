@@ -47,8 +47,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EnemyID: 0
   EnemyName: Test
-  MaxHealthValue: 10
-  CurrentHealthValue: 5
+  MaxHealthValue: 20
+  CurrentHealthValue: 15
   AttackValue: 5
   DefenseValue: 5
   BaseMemoryValue: 100

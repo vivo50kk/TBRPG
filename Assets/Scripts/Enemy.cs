@@ -11,16 +11,19 @@ public class Enemy : MonoBehaviour
     public int AttackValue;
     public int DefenseValue;
     public int BaseMemoryValue;
-    //test
-    // Start is called before the first frame update
-    void Start()
+    
+    public void TakeDamage(int damage)
     {
-        
+        int damageTaken = Mathf.Max(damage, 0);
+        CurrentHealthValue -= damageTaken;
+        Debug.Log($"{EnemyName} 受到 {damageTaken} 点伤害，当前生命值：{CurrentHealthValue}");
+        if (CurrentHealthValue < 0)
+        {
+            CurrentHealthValue = 0;
+        }
     }
-
-    // Update is called once per frame
-    void Update()
+    public bool IsHealthDefeated()
     {
-        
+        return CurrentHealthValue <= 0;
     }
 }
