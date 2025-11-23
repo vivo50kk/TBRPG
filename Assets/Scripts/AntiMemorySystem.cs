@@ -8,7 +8,7 @@ public class AntiMemorySystem : MonoBehaviour
     public int CurrentAntiMemoryValue = 101;
     public AntiMemoryUI antiMemoryUI;
 
-    void Start()
+    void Awake()
     {
         antiMemoryUI.InitAntiMemoryBar(MaxAntiMemoryValue);
     }

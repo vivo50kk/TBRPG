@@ -131,7 +131,6 @@ public class BattleSystem : MonoBehaviour
             Debug.Log("Execute Skill:" + skill.skillName);
             StartCoroutine(skill.Execute(player, enemy, this, antiMemorySystem));
         }
-        enemyBloodBarUI.SetHP(enemy.MaxHealthValue, enemy.CurrentHealthValue);
         playerBloodBarUI.SetHP(player.MaxHealthValue, player.CurrentHealthValue);
         
         //判断血量胜负，更新UI，切换回合状态

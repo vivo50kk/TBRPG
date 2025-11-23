@@ -48,7 +48,8 @@ public class SkillSO : ScriptableObject
 
         // 消耗资源
         player.CurrentMagicValue -= MagicCost;
-        player.CurrentHealthValue -= healthCost;
+        //player.CurrentHealthValue -= healthCost;
+        player.TakeDamage(healthCost);
         // 播放动画和音效
         yield return new WaitForSeconds(1f);
         Debug.Log("技能动画放映");

@@ -11,7 +11,17 @@ public class Enemy : MonoBehaviour
     public int AttackValue;
     public int DefenseValue;
     public int BaseMemoryValue;
+
+    private BloodBarUI enemyHealthBar;
     
+    public void Start()
+    {
+        enemyHealthBar = GameObject.Find("Canvas/BattleUI/EnemyHealthUI").GetComponent<BloodBarUI>();
+        if (enemyHealthBar == null)
+        {
+            Debug.Log("找不到bloodBar");
+        }
+    }
     public void TakeDamage(int damage)
     {
         int damageTaken = Mathf.Max(damage, 0);
@@ -21,6 +31,9 @@ public class Enemy : MonoBehaviour
         {
             CurrentHealthValue = 0;
         }
+        // 更新血条UI
+        enemyHealthBar.SetHP(MaxHealthValue, CurrentHealthValue);
+
     }
     public bool IsHealthDefeated()
     {
