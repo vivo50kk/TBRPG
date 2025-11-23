@@ -123,21 +123,49 @@ public class BattleSystem : MonoBehaviour
         skillSystemUI.Show();
     }
 
-    public void SkillExecute(SkillSO skill)
+    public void PlayerSkillExecute(SkillSO skill)
     {
+        if (skillSystemUI.IsExecuting())
+        {
+            Debug.Log("执行中……");
+            return ;
+        }
+        skillSystemUI.ExecutingSkill();
         Debug.Log("Find Skill:" + skill.skillName);
         if (skill.IsUsable(player))
         {
             Debug.Log("Execute Skill:" + skill.skillName);
             StartCoroutine(skill.Execute(player, enemy, this, antiMemorySystem));
         }
-        playerBloodBarUI.SetHP(player.MaxHealthValue, player.CurrentHealthValue);
         
         //判断血量胜负，更新UI，切换回合状态
         //记忆胜利判断没做
+        EndTurn();
+    }
+
+    public void EndTurn()
+    {
         if (enemy.IsHealthDefeated())
         {
             state = BattleState.WON;
+        }
+        else if (player.IsHealthDefeated())
+        {
+            state = BattleState.LOST;
+        }
+        else
+        {
+            if (state == BattleState.PLAYERTURN)
+            {
+                state = BattleState.ENEMYTURN;
+                //收起玩家操作界面UI有点写散了，回头改
+                battleHubUI.Hide();
+                skillSystemUI.Hide();
+            }
+            else
+            {
+                state = BattleState.PLAYERTURN;
+            }
         }
     }
 }

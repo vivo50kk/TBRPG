@@ -12,6 +12,8 @@ public class SkillSystemUI : MonoBehaviour
     public SkillManager skillManager;
 
     private GameObject content;
+
+    private bool isSkillExecuting = false;
     // Start is called before the first frame update
     //µ¥ÀýÄ£Ê½
     private void Awake()
@@ -38,6 +40,7 @@ public class SkillSystemUI : MonoBehaviour
 
     public void Hide()
     {
+        isSkillExecuting = false;
         this.gameObject.SetActive(false);
     }
 
@@ -59,4 +62,15 @@ public class SkillSystemUI : MonoBehaviour
             skillUI.InitSkill(skill);
         }
     }
+
+    public bool IsExecuting()
+    {
+        return isSkillExecuting;
+    }
+
+    public void ExecutingSkill()
+    {
+        isSkillExecuting = true;
+    }
+
 }

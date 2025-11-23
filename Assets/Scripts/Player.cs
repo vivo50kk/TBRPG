@@ -44,4 +44,9 @@ public class Player : MonoBehaviour
         playerHealthBar.SetHP(MaxHealthValue, CurrentHealthValue);
 
     }
+
+    public bool IsHealthDefeated()
+    {
+        return CurrentHealthValue <= 0;
+    }
 }

@@ -22,7 +22,7 @@ public class SkillUI : MonoBehaviour
     public void OnButtonClick()
     {
         Debug.Log("Skill Button Clicked: " + skill.skillName);
-        BattleSystem.Instance.SkillExecute(skill);
+        BattleSystem.Instance.PlayerSkillExecute(skill);
 
     }
 }
