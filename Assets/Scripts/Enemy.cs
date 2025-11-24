@@ -22,6 +22,13 @@ public class Enemy : MonoBehaviour
             Debug.Log("’“≤ªµΩbloodBar");
         }
     }
+
+    public double CalculateHitRate(Player player)
+    {
+        double hitRate = 0f;
+        hitRate = ((100 - BaseMemoryValue) + (100 - player.BaseMemoryValue) - player.CurrentMagicValue * player.BaseMemoryValue / 5) / 100.0;
+        return hitRate;
+    }
     public void TakeDamage(int damage)
     {
         int damageTaken = Mathf.Max(damage, 0);

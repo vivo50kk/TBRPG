@@ -16,6 +16,13 @@ public enum SkillType
     Defense
 }
 
+public enum EnemySkillType
+{
+    BaseSkills,
+    Physics,
+    Memory
+}
+
 public enum StatTpye
 {
     Health,

@@ -91,11 +91,7 @@ public class BattleSystem : MonoBehaviour
         }
     }
 
-    private void PlayerTurn()
-    {
-        Debug.Log("playerTrun");
-        
-    }
+    
 
     private bool CalculateTurnOrder(float AntiMemoryValue)
     {
@@ -110,8 +106,17 @@ public class BattleSystem : MonoBehaviour
         }
     }
 
-    
 
+    private void PlayerTurn()
+    {
+        Debug.Log("playerTrun");
+
+    }
+
+    private void EnemyTurn()
+    {
+
+    }
 
 
     public void OnSkillButton()
@@ -161,6 +166,7 @@ public class BattleSystem : MonoBehaviour
                 //收起玩家操作界面UI有点写散了，回头改
                 battleHubUI.Hide();
                 skillSystemUI.Hide();
+                EnemyTurn();
             }
             else
             {
