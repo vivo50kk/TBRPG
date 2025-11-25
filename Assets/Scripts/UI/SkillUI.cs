@@ -21,7 +21,7 @@ public class SkillUI : MonoBehaviour
 
     public void OnButtonClick()
     {
-        //BattleSystem.Instance.PlayerSkillExecute(skill);
-        StartCoroutine(BattleSystem.Instance.PlayerSkillSeq(skill));
+        BattleSystem.Instance.PlayerSkillExecute(skill);
+        //StartCoroutine(BattleSystem.Instance.PlayerSkillSeq(skill));
     }
 }

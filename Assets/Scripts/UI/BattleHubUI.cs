@@ -8,6 +8,9 @@ public class BattleHubUI : MonoBehaviour
 {
 
     public TextMeshProUGUI playerNameText;
+    
+    public SkillSystemUI skillSystemUI;
+    public DialogSystemUI dialogSystemUI;
     //public TextMeshProUGUI enemyMessage;
     // Start is called before the first frame update
     void Start()
@@ -35,5 +38,23 @@ public class BattleHubUI : MonoBehaviour
     public void Hide()
     {
         this .gameObject.SetActive(false);
+    }
+
+    public void OnSkillButton()
+    {
+        if (BattleSystem.Instance.state != BattleState.PLAYERTURN)
+        {
+            return;
+        }
+        skillSystemUI.Show();
+    }
+
+    public void OnDialogButtonClick()
+    {
+        if (BattleSystem.Instance.state != BattleState.PLAYERTURN)
+        {
+            return;
+        }
+        dialogSystemUI.Show();
     }
 }

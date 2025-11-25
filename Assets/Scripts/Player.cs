@@ -7,6 +7,9 @@ public class Player : MonoBehaviour
     public int PlayerID;
     public string PlayerName;
 
+    public Sprite CharacterPortrait;
+    public Sprite CharacterSprite;
+
     public int MaxHealthValue;
     public int CurrentHealthValue;
     public int BaseMemoryValue;

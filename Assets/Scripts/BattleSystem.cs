@@ -113,31 +113,33 @@ public class BattleSystem : MonoBehaviour
 
     }
 
-    private void EnemyTurn()
+    private IEnumerator EnemyTurn()
     {
         Debug.Log("enemyTurn");
         EnemySkillSO enemySkill=SkillManager.Instance.RandomEnemySkill();
         if (enemySkill.skillType == EnemySkillType.BaseSkills && enemySkill.FirstCheck(enemy, player))
         {
-            StartCoroutine(enemySkill.Execute(player, enemy, this, antiMemorySystem));
+            yield return StartCoroutine(enemySkill.Execute(player, enemy, this, antiMemorySystem));
         }
         else if (enemySkill.FirstCheck(enemy, player) && enemySkill.SecondCheck(enemy, player))
         {
-            StartCoroutine(enemySkill.Execute(player, enemy, this, antiMemorySystem));
+            yield return StartCoroutine(enemySkill.Execute(player, enemy, this, antiMemorySystem));
         }
         EndTurn();
 
     }
 
+    
 
-    public void OnSkillButton()
-    {
-        if (state != BattleState.PLAYERTURN)
-        {
-            return;
-        }
-        skillSystemUI.Show();
-    }
+
+    //public void OnSkillButton()
+    //{
+    //    if (state != BattleState.PLAYERTURN)
+    //    {
+    //        return;
+    //    }
+    //    skillSystemUI.Show();
+    //}
 
     public void PlayerSkillExecute(SkillSO skill)
     {
@@ -149,7 +151,8 @@ public class BattleSystem : MonoBehaviour
         skillSystemUI.ExecutingSkill();
         if (skill.IsUsable(player))
         {
-            StartCoroutine(skill.Execute(player, enemy, this, antiMemorySystem));
+            //StartCoroutine(skill.Execute(player, enemy, this, antiMemorySystem));
+            StartCoroutine(PlayerSkillSeq(skill));
         }
 
         
@@ -182,7 +185,7 @@ public class BattleSystem : MonoBehaviour
                 //收起玩家操作界面UI有点写散了，回头改
                 battleHubUI.Hide();
                 skillSystemUI.Hide();
-                EnemyTurn();
+                StartCoroutine(EnemyTurn());
             }
             else
             {

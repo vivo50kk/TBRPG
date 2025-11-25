@@ -99,6 +99,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerID: 0
   PlayerName: Female
+  CharacterPortrait: {fileID: 0}
+  CharacterSprite: {fileID: 0}
   MaxHealthValue: 60
   CurrentHealthValue: 50
   BaseMemoryValue: 70
@@ -155,11 +157,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerID: 0
   PlayerName: Female
+  CharacterPortrait: {fileID: 21300000, guid: e4c028f4a5f19fc4d953409842a8f57d, type: 3}
+  CharacterSprite: {fileID: 0}
   MaxHealthValue: 70
   CurrentHealthValue: 70
   BaseMemoryValue: 100
-  MaxHunger: 0
-  CurrentHunger: 0
+  MaxHunger: 100
+  CurrentHunger: 50
   MaxMagicValue: 60
   CurrentMagicValue: 50
   AttackValue: 10
