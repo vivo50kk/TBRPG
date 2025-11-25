@@ -53,7 +53,7 @@ public class SkillSystemUI : MonoBehaviour
 
     public void ShowSkillList()
     {
-        Debug.Log("Show Skill List"+ skillManager.SkillCount().ToString());
+        ClearSkillList();
         for (int i = 0; i < skillManager.SkillCount(); i++)
         {
             SkillSO skill = skillManager.SkillShow(i);
@@ -61,6 +61,25 @@ public class SkillSystemUI : MonoBehaviour
             SkillUI skillUI = skillUIObj.GetComponent<SkillUI>();
             skillUI.InitSkill(skill);
         }
+    }
+    private void ClearSkillList()
+    {
+        // 方法1: 反向遍历销毁（推荐，避免修改集合问题）
+        for (int i = content.transform.childCount - 1; i >= 0; i--)
+        {
+            Destroy(content.transform.GetChild(i).gameObject);
+        }
+
+        // 或者使用方法2: 使用临时列表
+        // List<GameObject> children = new List<GameObject>();
+        // foreach (Transform child in content.transform)
+        // {
+        //     children.Add(child.gameObject);
+        // }
+        // foreach (GameObject child in children)
+        // {
+        //     Destroy(child);
+        // }
     }
 
     public bool IsExecuting()

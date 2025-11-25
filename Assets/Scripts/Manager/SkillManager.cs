@@ -7,6 +7,7 @@ public class SkillManager : MonoBehaviour
 {
     public static SkillManager Instance { get; private set; }
     public List<SkillSO> skillList;
+    public List<EnemySkillSO> enemySkillList;
     void Start()
     {
         if (Instance != null && Instance != this)
@@ -25,4 +26,12 @@ public class SkillManager : MonoBehaviour
     {
         return skillList[index];
     }
+
+    public EnemySkillSO RandomEnemySkill()
+    {
+        System.Random random = new System.Random();
+        int randomNum = random.Next(0, enemySkillList.Count);
+        return enemySkillList[randomNum];
+    }
+
 }

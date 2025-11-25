@@ -6,7 +6,10 @@ public class SkillDBManager : MonoBehaviour
 {
     public static SkillDBManager Instance { get; private set; }
 
-    public SkillDBSO skillDB;
+    public SkillDBSO playerSkillDB;
+
+    public EnemySkillDBSO enemySkillDB;
+
     // Start is called before the first frame update
     void Start()
     {

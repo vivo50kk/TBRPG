@@ -45,6 +45,29 @@ public class Player : MonoBehaviour
 
     }
 
+    public void BaseMemoryLoss(int MemoryLoss)
+    {
+        BaseMemoryValue -= MemoryLoss;
+        if (BaseMemoryValue < 0)
+        {
+            BaseMemoryValue = 0;
+        }
+    }
+
+    public double CalculateHitRate(AntiMemorySystem antiMemorySystem)
+    {
+        double HitRate = 0;
+        HitRate = ((CurrentMagicValue * BaseMemoryValue / 5.0) - (100 - antiMemorySystem.CurrentAntiMemoryValue)) / 100.0;
+        return HitRate;
+    }
+
+    public double CalculateDodgeChance()
+    {
+        double DodgeChance = 0;
+        DodgeChance = CurrentHealthValue * CurrentHunger * BaseMemoryValue / 2000000.0;
+        return DodgeChance;
+    }
+
     public bool IsHealthDefeated()
     {
         return CurrentHealthValue <= 0;

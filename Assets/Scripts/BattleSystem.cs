@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static UnityEditor.Progress;
-
+using System;
 
 
 public enum BattleState
@@ -109,12 +109,23 @@ public class BattleSystem : MonoBehaviour
 
     private void PlayerTurn()
     {
-        Debug.Log("playerTrun");
+        Debug.Log("playerTurn");
 
     }
 
     private void EnemyTurn()
     {
+        Debug.Log("enemyTurn");
+        EnemySkillSO enemySkill=SkillManager.Instance.RandomEnemySkill();
+        if (enemySkill.skillType == EnemySkillType.BaseSkills && enemySkill.FirstCheck(enemy, player))
+        {
+            StartCoroutine(enemySkill.Execute(player, enemy, this, antiMemorySystem));
+        }
+        else if (enemySkill.FirstCheck(enemy, player) && enemySkill.SecondCheck(enemy, player))
+        {
+            StartCoroutine(enemySkill.Execute(player, enemy, this, antiMemorySystem));
+        }
+        EndTurn();
 
     }
 
@@ -133,16 +144,21 @@ public class BattleSystem : MonoBehaviour
         if (skillSystemUI.IsExecuting())
         {
             Debug.Log("执行中……");
-            return ;
+            return;
         }
         skillSystemUI.ExecutingSkill();
-        Debug.Log("Find Skill:" + skill.skillName);
         if (skill.IsUsable(player))
         {
-            Debug.Log("Execute Skill:" + skill.skillName);
             StartCoroutine(skill.Execute(player, enemy, this, antiMemorySystem));
         }
+
         
+    }
+
+    public IEnumerator PlayerSkillSeq(SkillSO skill)
+    {
+        yield return StartCoroutine(skill.Execute(player, enemy, this, antiMemorySystem));
+
         //判断血量胜负，更新UI，切换回合状态
         //记忆胜利判断没做
         EndTurn();
@@ -171,6 +187,7 @@ public class BattleSystem : MonoBehaviour
             else
             {
                 state = BattleState.PLAYERTURN;
+                battleHubUI.Show();
             }
         }
     }

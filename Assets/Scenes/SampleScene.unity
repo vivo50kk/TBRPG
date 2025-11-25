@@ -4183,7 +4183,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb64429429beeab4ca97eab30318bca7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillDB: {fileID: 11400000, guid: fcdd77cb85dec4d4c9b925197d1412f1, type: 2}
+  playerSkillDB: {fileID: 11400000, guid: fcdd77cb85dec4d4c9b925197d1412f1, type: 2}
+  enemySkillDB: {fileID: 11400000, guid: 49e1a2fade2c12a47a2ea817c01d7ac8, type: 2}
 --- !u!4 &1835317974
 Transform:
   m_ObjectHideFlags: 0
@@ -4214,6 +4215,10 @@ MonoBehaviour:
   skillList:
   - {fileID: 11400000, guid: 7c9e29e9bc6eebb418314c8269d76678, type: 2}
   - {fileID: 11400000, guid: 6667473c3b1e1d84baa4ec00c623ec3c, type: 2}
+  enemySkillList:
+  - {fileID: 11400000, guid: 2d2e80d1e5eedb046b3029d2cb4b824b, type: 2}
+  - {fileID: 11400000, guid: 0ed4dc42d6226c94996ad7f72c45d7fc, type: 2}
+  - {fileID: 11400000, guid: 68e7560f8e317c64d8521dfd413ab471, type: 2}
 --- !u!1 &2026149910
 GameObject:
   m_ObjectHideFlags: 0
@@ -4866,6 +4871,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 826213220620874517, guid: 965601f08a2be034ba5abd48b0a8bdc1, type: 3}
+      propertyPath: AttackValue
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 1989858966659044010, guid: 965601f08a2be034ba5abd48b0a8bdc1, type: 3}
       propertyPath: m_Name
       value: Enemy

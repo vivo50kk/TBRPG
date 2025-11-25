@@ -157,7 +157,7 @@ MonoBehaviour:
   PlayerName: Female
   MaxHealthValue: 70
   CurrentHealthValue: 70
-  BaseMemoryValue: 70
+  BaseMemoryValue: 100
   MaxHunger: 0
   CurrentHunger: 0
   MaxMagicValue: 60

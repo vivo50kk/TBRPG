@@ -49,9 +49,9 @@ MonoBehaviour:
   EnemyName: Test
   MaxHealthValue: 20
   CurrentHealthValue: 15
-  AttackValue: 5
+  AttackValue: 20
   DefenseValue: 5
-  BaseMemoryValue: 100
+  BaseMemoryValue: 0
 --- !u!1 &3190804042083440575
 GameObject:
   m_ObjectHideFlags: 0
