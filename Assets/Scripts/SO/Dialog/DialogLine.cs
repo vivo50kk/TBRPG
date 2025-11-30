@@ -5,6 +5,7 @@ using UnityEngine;
 public class DialogLine
 {
     public string CharacterName;
+    public Sprite CharacterSprite;
     public Sprite CharacterPortrait;
     public string DialogContentText;
 }
